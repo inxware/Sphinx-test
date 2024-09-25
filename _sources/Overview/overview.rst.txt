@@ -18,8 +18,14 @@ The most recent published version of this documentation should be at https://ydb
 
 Community
 ---------
+
 .. raw:: html
-  <h1> RAW HTMML </h1>
+
+   <h1> RAW HTMML </h1>
+
+.. raw:: html
+
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/x57GYTMVxqI?si=aZQ2ExMOVPyQWuUz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 You can ask your questions in official Telegram chats: `EN <https://t.me/ydb_en>`_ | `RU <https://t.me/ydb_ru>`_.
