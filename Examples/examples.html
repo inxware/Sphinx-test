@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples &mdash; ydb  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ydb
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Examples</a><ul>
+<li><a class="reference internal" href="#basic-example">Basic example</a><ul>
+<li><a class="reference internal" href="#create-table">Create table</a></li>
+<li><a class="reference internal" href="#upsert-simple">Upsert Simple</a></li>
+<li><a class="reference internal" href="#simple-select">Simple Select</a></li>
+<li><a class="reference internal" href="#select-with-parameters">Select With Parameters</a></li>
+<li><a class="reference internal" href="#huge-select">Huge Select</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ydb</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Examples</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h1>
+<section id="basic-example">
+<h2>Basic example<a class="headerlink" href="#basic-example" title="Link to this heading"></a></h2>
+<p>All examples in this section are parts of <a class="reference external" href="https://github.com/ydb-platform/ydb-python-sdk/tree/main/examples/basic_example_v2">basic example</a>.</p>
+<p>For deeper upderstanding it is better to read the whole example.</p>
+<section id="create-table">
+<h3>Create table<a class="headerlink" href="#create-table" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_tables</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="n">ydb</span><span class="o">.</span><span class="n">QuerySessionPool</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Creating table series...&quot;</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">execute_with_retries</span><span class="p">(</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        CREATE table `series` (</span>
+<span class="sd">            `series_id` Int64,</span>
+<span class="sd">            `title` Utf8,</span>
+<span class="sd">            `series_info` Utf8,</span>
+<span class="sd">            `release_date` Date,</span>
+<span class="sd">            PRIMARY KEY (`series_id`)</span>
+<span class="sd">        )</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Creating table seasons...&quot;</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">execute_with_retries</span><span class="p">(</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        CREATE table `seasons` (</span>
+<span class="sd">            `series_id` Int64,</span>
+<span class="sd">            `season_id` Int64,</span>
+<span class="sd">            `title` Utf8,</span>
+<span class="sd">            `first_aired` Date,</span>
+<span class="sd">            `last_aired` Date,</span>
+<span class="sd">            PRIMARY KEY (`series_id`, `season_id`)</span>
+<span class="sd">        )</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Creating table episodes...&quot;</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">execute_with_retries</span><span class="p">(</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        CREATE table `episodes` (</span>
+<span class="sd">            `series_id` Int64,</span>
+<span class="sd">            `season_id` Int64,</span>
+<span class="sd">            `episode_id` Int64,</span>
+<span class="sd">            `title` Utf8,</span>
+<span class="sd">            `air_date` Date,</span>
+<span class="sd">            PRIMARY KEY (`series_id`, `season_id`, `episode_id`)</span>
+<span class="sd">        )</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="upsert-simple">
+<h3>Upsert Simple<a class="headerlink" href="#upsert-simple" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">upsert_simple</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="n">ydb</span><span class="o">.</span><span class="n">QuerySessionPool</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Performing UPSERT into episodes...&quot;</span><span class="p">)</span>
+
+    <span class="n">pool</span><span class="o">.</span><span class="n">execute_with_retries</span><span class="p">(</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        UPSERT INTO episodes (series_id, season_id, episode_id, title) VALUES (2, 6, 1, &quot;TBD&quot;);</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="simple-select">
+<h3>Simple Select<a class="headerlink" href="#simple-select" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">select_simple</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="n">ydb</span><span class="o">.</span><span class="n">QuerySessionPool</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Check series table...&quot;</span><span class="p">)</span>
+    <span class="n">result_sets</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">execute_with_retries</span><span class="p">(</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        SELECT</span>
+<span class="sd">            series_id,</span>
+<span class="sd">            title,</span>
+<span class="sd">            release_date</span>
+<span class="sd">        FROM series</span>
+<span class="sd">        WHERE series_id = 1;</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">first_set</span> <span class="o">=</span> <span class="n">result_sets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">first_set</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;series, id: &quot;</span><span class="p">,</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">series_id</span><span class="p">,</span>
+            <span class="s2">&quot;, title: &quot;</span><span class="p">,</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+            <span class="s2">&quot;, release date: &quot;</span><span class="p">,</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">release_date</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">first_set</span>
+</pre></div>
+</div>
+</section>
+<section id="select-with-parameters">
+<h3>Select With Parameters<a class="headerlink" href="#select-with-parameters" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">select_with_parameters</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="n">ydb</span><span class="o">.</span><span class="n">QuerySessionPool</span><span class="p">,</span> <span class="n">series_id</span><span class="p">,</span> <span class="n">season_id</span><span class="p">,</span> <span class="n">episode_id</span><span class="p">):</span>
+    <span class="n">result_sets</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">execute_with_retries</span><span class="p">(</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DECLARE $seriesId AS Int64;</span>
+<span class="sd">        DECLARE $seasonId AS Int64;</span>
+<span class="sd">        DECLARE $episodeId AS Int64;</span>
+
+<span class="sd">        SELECT</span>
+<span class="sd">            title,</span>
+<span class="sd">            air_date</span>
+<span class="sd">        FROM episodes</span>
+<span class="sd">        WHERE series_id = $seriesId AND season_id = $seasonId AND episode_id = $episodeId;</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;$seriesId&quot;</span><span class="p">:</span> <span class="n">series_id</span><span class="p">,</span>  <span class="c1"># could be defined implicit</span>
+            <span class="s2">&quot;$seasonId&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">season_id</span><span class="p">,</span> <span class="n">ydb</span><span class="o">.</span><span class="n">PrimitiveType</span><span class="o">.</span><span class="n">Int64</span><span class="p">),</span>  <span class="c1"># could be defined via tuple</span>
+            <span class="s2">&quot;$episodeId&quot;</span><span class="p">:</span> <span class="n">ydb</span><span class="o">.</span><span class="n">TypedValue</span><span class="p">(</span><span class="n">episode_id</span><span class="p">,</span> <span class="n">ydb</span><span class="o">.</span><span class="n">PrimitiveType</span><span class="o">.</span><span class="n">Int64</span><span class="p">),</span>  <span class="c1"># could be defined via special class</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&gt; select_with_parameters:&quot;</span><span class="p">)</span>
+    <span class="n">first_set</span> <span class="o">=</span> <span class="n">result_sets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">first_set</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;episode title:&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="s2">&quot;, air date:&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">air_date</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">first_set</span>
+</pre></div>
+</div>
+</section>
+<section id="huge-select">
+<h3>Huge Select<a class="headerlink" href="#huge-select" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">huge_select</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="n">ydb</span><span class="o">.</span><span class="n">QuerySessionPool</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">callee</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">ydb</span><span class="o">.</span><span class="n">QuerySessionSync</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;SELECT * from episodes;&quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">transaction</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="n">query</span><span class="p">,</span>
+            <span class="n">commit_tx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span> <span class="k">as</span> <span class="n">result_sets</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&gt; Huge SELECT call&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">result_set</span> <span class="ow">in</span> <span class="n">result_sets</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result_set</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;episode title:&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="s2">&quot;, air date:&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">air_date</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pool</span><span class="o">.</span><span class="n">retry_operation_sync</span><span class="p">(</span><span class="n">callee</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, yandex.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

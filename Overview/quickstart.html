@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Start &mdash; ydb  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ydb
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Quick Start</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#installation-via-pypi">Installation via Pypi</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#import-package">Import Package</a></li>
+<li><a class="reference internal" href="#driver-initialization">Driver Initialization</a></li>
+<li><a class="reference internal" href="#sessionpool-initialization">SessionPool Initialization</a></li>
+<li><a class="reference internal" href="#query-execution">Query Execution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ydb</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quick Start</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h1>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Python 3.8 or higher;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span></code> version 9.0.1 or higher;</p></li>
+</ul>
+<p>If necessary, upgrade your version of <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+<p>If you cannot upgrade <cite>pip</cite> due to a system-owned installation, you can run the example in a virtualenv:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span>
+<span class="n">virtualenv</span> <span class="n">venv</span>
+<span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+</section>
+<section id="installation-via-pypi">
+<h3>Installation via Pypi<a class="headerlink" href="#installation-via-pypi" title="Link to this heading"></a></h3>
+<p>To install YDB Python SDK through Pypi execute the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ydb</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<section id="import-package">
+<h3>Import Package<a class="headerlink" href="#import-package" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ydb</span>
+</pre></div>
+</div>
+</section>
+<section id="driver-initialization">
+<h3>Driver Initialization<a class="headerlink" href="#driver-initialization" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;grpc://localhost:2136&quot;</span>  <span class="c1"># your ydb endpoint</span>
+<span class="n">database</span> <span class="o">=</span> <span class="s2">&quot;/local&quot;</span>  <span class="c1"># your ydb database</span>
+
+<span class="k">with</span> <span class="n">ydb</span><span class="o">.</span><span class="n">Driver</span><span class="p">(</span>
+    <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">ydb</span><span class="o">.</span><span class="n">credentials_from_env_variables</span><span class="p">(),</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">driver</span><span class="p">:</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fail_fast</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="sessionpool-initialization">
+<h3>SessionPool Initialization<a class="headerlink" href="#sessionpool-initialization" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ydb</span><span class="o">.</span><span class="n">QuerySessionPool</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</section>
+<section id="query-execution">
+<h3>Query Execution<a class="headerlink" href="#query-execution" title="Link to this heading"></a></h3>
+<p>Python SDK supports queries described by YQL syntax.
+There are two primary methods for executing queries, each with different properties and use cases:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pool.execute_with_retries</span></code>:</p>
+<ul>
+<li><p>Buffers the entire result set in client memory.</p></li>
+<li><p>Automatically retries execution in case of retriable issues.</p></li>
+<li><p>Does not allow specifying a transaction execution mode.</p></li>
+<li><p>Recommended for one-off queries that are expected to produce small result sets.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tx.execute</span></code>:</p>
+<ul>
+<li><p>Returns an iterator over the query results, allowing processing of results that may not fit into client memory.</p></li>
+<li><p>Retries must be handled manually via <cite>pool.retry_operation_sync</cite>.</p></li>
+<li><p>Allows specifying a transaction execution mode.</p></li>
+<li><p>Recommended for scenarios where <cite>pool.execute_with_retries</cite> is insufficient.</p></li>
+</ul>
+</li>
+</ul>
+<p>Usage of <code class="docutils literal notranslate"><span class="pre">pool.execute_with_retries()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pool</span><span class="o">.</span><span class="n">execute_with_retries</span><span class="p">(</span><span class="s2">&quot;DROP TABLE IF EXISTS example&quot;</span><span class="p">)</span>
+<span class="n">pool</span><span class="o">.</span><span class="n">execute_with_retries</span><span class="p">(</span><span class="s2">&quot;CREATE TABLE example(key UInt64, value String, PRIMARY KEY (key))&quot;</span><span class="p">)</span>
+
+<span class="n">pool</span><span class="o">.</span><span class="n">execute_with_retries</span><span class="p">(</span><span class="s2">&quot;INSERT INTO example (key, value) VALUES (1, &#39;luffy&#39;)&quot;</span><span class="p">)</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">execute_with_retries</span><span class="p">(</span><span class="s2">&quot;SELECT COUNT(*) AS rows_count FROM example&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rows_count</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<p>Example of <code class="docutils literal notranslate"><span class="pre">tx.execute()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">callee</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">ydb</span><span class="o">.</span><span class="n">QuerySessionSync</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">transaction</span><span class="p">()</span> <span class="k">as</span> <span class="n">tx</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">tx</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="s2">&quot;INSERT INTO example (key, value) VALUES (2, &#39;zoro&#39;)&quot;</span>
+        <span class="p">):</span>
+            <span class="k">pass</span>
+
+        <span class="k">with</span> <span class="n">tx</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="s2">&quot;INSERT INTO example (key, value) VALUES (3, &#39;sanji&#39;)&quot;</span><span class="p">,</span>
+            <span class="n">commit_tx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="k">pass</span>
+
+<span class="n">pool</span><span class="o">.</span><span class="n">retry_operation_sync</span><span class="p">(</span><span class="n">callee</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, yandex.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

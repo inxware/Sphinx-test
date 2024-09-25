@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YDB API Reference &mdash; ydb  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ydb
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">YDB API Reference</a><ul>
+<li><a class="reference internal" href="#driver">Driver</a><ul>
+<li><a class="reference internal" href="#driverconfig">DriverConfig</a></li>
+<li><a class="reference internal" href="#id1">Driver</a></li>
+<li><a class="reference internal" href="#driver-asyncio">Driver (AsyncIO)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#common">Common</a><ul>
+<li><a class="reference internal" href="#baserequestsettings">BaseRequestSettings</a></li>
+<li><a class="reference internal" href="#retrysettings">RetrySettings</a></li>
+<li><a class="reference internal" href="#result-sets">Result Sets</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#query-service">Query Service</a><ul>
+<li><a class="reference internal" href="#queryclientsettings">QueryClientSettings</a></li>
+<li><a class="reference internal" href="#querysessionpool">QuerySessionPool</a></li>
+<li><a class="reference internal" href="#querysession">QuerySession</a></li>
+<li><a class="reference internal" href="#querytxcontext">QueryTxContext</a></li>
+<li><a class="reference internal" href="#querysessionpool-asyncio">QuerySessionPool (AsyncIO)</a></li>
+<li><a class="reference internal" href="#querysession-asyncio">QuerySession (AsyncIO)</a></li>
+<li><a class="reference internal" href="#querytxcontext-asyncio">QueryTxContext (AsyncIO)</a></li>
+<li><a class="reference internal" href="#query-tx-mode">Query Tx Mode</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#table-service">Table Service</a><ul>
+<li><a class="reference internal" href="#tableclient">TableClient</a></li>
+<li><a class="reference internal" href="#tableclientsettings">TableClientSettings</a></li>
+<li><a class="reference internal" href="#session-pool">Session Pool</a></li>
+<li><a class="reference internal" href="#session">Session</a></li>
+<li><a class="reference internal" href="#transaction-context">Transaction Context</a></li>
+<li><a class="reference internal" href="#dataquery">DataQuery</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scheme">Scheme</a><ul>
+<li><a class="reference internal" href="#schemeclient">SchemeClient</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ydb</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">YDB API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ydb-api-reference">
+<h1>YDB API Reference<a class="headerlink" href="#ydb-api-reference" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="driver">
+<span id="module-ydb"></span><h2>Driver<a class="headerlink" href="#driver" title="Link to this heading"></a></h2>
+<section id="driverconfig">
+<h3>DriverConfig<a class="headerlink" href="#driverconfig" title="Link to this heading"></a></h3>
+</section>
+<section id="id1">
+<h3>Driver<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+</section>
+<section id="driver-asyncio">
+<h3>Driver (AsyncIO)<a class="headerlink" href="#driver-asyncio" title="Link to this heading"></a></h3>
+</section>
+</section>
+<hr class="docutils" />
+<section id="common">
+<h2>Common<a class="headerlink" href="#common" title="Link to this heading"></a></h2>
+<section id="baserequestsettings">
+<h3>BaseRequestSettings<a class="headerlink" href="#baserequestsettings" title="Link to this heading"></a></h3>
+</section>
+<section id="retrysettings">
+<h3>RetrySettings<a class="headerlink" href="#retrysettings" title="Link to this heading"></a></h3>
+</section>
+<section id="result-sets">
+<h3>Result Sets<a class="headerlink" href="#result-sets" title="Link to this heading"></a></h3>
+</section>
+</section>
+<hr class="docutils" />
+<section id="query-service">
+<h2>Query Service<a class="headerlink" href="#query-service" title="Link to this heading"></a></h2>
+<section id="queryclientsettings">
+<h3>QueryClientSettings<a class="headerlink" href="#queryclientsettings" title="Link to this heading"></a></h3>
+</section>
+<section id="querysessionpool">
+<h3>QuerySessionPool<a class="headerlink" href="#querysessionpool" title="Link to this heading"></a></h3>
+</section>
+<section id="querysession">
+<h3>QuerySession<a class="headerlink" href="#querysession" title="Link to this heading"></a></h3>
+</section>
+<section id="querytxcontext">
+<h3>QueryTxContext<a class="headerlink" href="#querytxcontext" title="Link to this heading"></a></h3>
+</section>
+<section id="querysessionpool-asyncio">
+<h3>QuerySessionPool (AsyncIO)<a class="headerlink" href="#querysessionpool-asyncio" title="Link to this heading"></a></h3>
+</section>
+<section id="querysession-asyncio">
+<h3>QuerySession (AsyncIO)<a class="headerlink" href="#querysession-asyncio" title="Link to this heading"></a></h3>
+</section>
+<section id="querytxcontext-asyncio">
+<h3>QueryTxContext (AsyncIO)<a class="headerlink" href="#querytxcontext-asyncio" title="Link to this heading"></a></h3>
+</section>
+<section id="query-tx-mode">
+<h3>Query Tx Mode<a class="headerlink" href="#query-tx-mode" title="Link to this heading"></a></h3>
+</section>
+</section>
+<hr class="docutils" />
+<section id="table-service">
+<h2>Table Service<a class="headerlink" href="#table-service" title="Link to this heading"></a></h2>
+<section id="tableclient">
+<h3>TableClient<a class="headerlink" href="#tableclient" title="Link to this heading"></a></h3>
+</section>
+<section id="tableclientsettings">
+<h3>TableClientSettings<a class="headerlink" href="#tableclientsettings" title="Link to this heading"></a></h3>
+</section>
+<section id="session-pool">
+<h3>Session Pool<a class="headerlink" href="#session-pool" title="Link to this heading"></a></h3>
+</section>
+<section id="session">
+<h3>Session<a class="headerlink" href="#session" title="Link to this heading"></a></h3>
+</section>
+<section id="transaction-context">
+<h3>Transaction Context<a class="headerlink" href="#transaction-context" title="Link to this heading"></a></h3>
+</section>
+<section id="dataquery">
+<h3>DataQuery<a class="headerlink" href="#dataquery" title="Link to this heading"></a></h3>
+</section>
+</section>
+<hr class="docutils" />
+<section id="scheme">
+<h2>Scheme<a class="headerlink" href="#scheme" title="Link to this heading"></a></h2>
+<section id="schemeclient">
+<h3>SchemeClient<a class="headerlink" href="#schemeclient" title="Link to this heading"></a></h3>
+<hr class="docutils" />
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, yandex.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
