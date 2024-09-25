@@ -7,10 +7,12 @@ INX
 ===============================
 
 .. toctree::
-:maxdepth: 3
+   :maxdepth: 3
 
-Overview
-Examples
+   Overview/overview
+   Overview/quickstart
+   Examples/examples
+   Examples/apireference
 
 
 Indices and tables
